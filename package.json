@@ -1,0 +1,13 @@
+{
+  "name": "factory-energy-tracker",
+  "version": "1.0.0",
+  "description": "Factory Energy Tracking & Analytics Dashboard (MERN)",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server"
+  },
+  "keywords": ["energy", "factory", "mern", "analytics"],
+  "author": "",
+  "license": "ISC"
+}
