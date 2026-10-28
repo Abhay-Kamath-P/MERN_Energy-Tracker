@@ -46,7 +46,7 @@ const machineSchema = new mongoose.Schema(
     },
     tariffRatePerKWh: {
       type: Number,
-      default: 0.15, // $0.15 per kWh default
+      default: 8.50, // ₹8.50 per kWh default in INR
     },
   },
   {

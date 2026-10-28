@@ -131,7 +131,7 @@ export const Sidebar = () => {
             </span>
           </div>
           <p className="text-[11px] text-[#E1DCC9]/60 leading-relaxed">
-            Industrial tariff: <span className="text-[#E1DCC9] font-medium">$0.15/kWh</span>
+            Industrial tariff: <span className="text-[#E1DCC9] font-medium">₹8.50/kWh</span>
           </p>
         </div>
       </div>

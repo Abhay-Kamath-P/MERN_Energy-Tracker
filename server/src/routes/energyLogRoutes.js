@@ -99,7 +99,7 @@ router.get('/export/csv', protect, async (req, res) => {
       .populate('loggedBy', 'name')
       .sort({ logDate: -1 });
 
-    const headers = 'Log Date,Machine Code,Machine Name,Department,Shift,Energy (kWh),Operating Hours,Power Factor,Peak Demand (kW),Cost ($),Logged By,Notes\n';
+    const headers = 'Log Date,Machine Code,Machine Name,Department,Shift,Energy (kWh),Operating Hours,Power Factor,Peak Demand (kW),Cost (INR),Logged By,Notes\n';
     const rows = logs.map((log) => {
       const dateStr = new Date(log.logDate).toISOString().split('T')[0];
       const mCode = log.machine?.code || 'N/A';
@@ -152,7 +152,7 @@ router.post('/', protect, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Selected machine not found' });
     }
 
-    const rate = machine.tariffRatePerKWh || Number(process.env.DEFAULT_ENERGY_RATE) || 0.15;
+    const rate = machine.tariffRatePerKWh || Number(process.env.DEFAULT_ENERGY_RATE) || 8.50;
     const calculatedCost = Number(energyConsumedKWh) * rate;
 
     const newLog = await EnergyLog.create({
@@ -210,7 +210,7 @@ router.put('/:id', protect, async (req, res) => {
     if (peakDemandKW !== undefined) log.peakDemandKW = Number(peakDemandKW);
     if (notes !== undefined) log.notes = notes;
 
-    const rate = targetMachine?.tariffRatePerKWh || 0.15;
+    const rate = targetMachine?.tariffRatePerKWh || 8.50;
     log.calculatedCost = Math.round(log.energyConsumedKWh * rate * 100) / 100;
 
     await log.save();

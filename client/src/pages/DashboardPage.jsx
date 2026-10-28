@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Zap, 
-  DollarSign, 
+  IndianRupee, 
   Gauge, 
   Flame, 
   RefreshCw,
@@ -136,12 +136,12 @@ export const DashboardPage = () => {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-[#E1DCC9]/60 uppercase tracking-wider">Electricity Bill</span>
             <div className="p-2 rounded-lg bg-[#412D15] text-[#E1DCC9] border border-[#412D15]">
-              <DollarSign className="h-4 w-4" />
+              <IndianRupee className="h-4 w-4" />
             </div>
           </div>
           <div className="mt-3">
             <div className="text-2xl font-bold text-[#E1DCC9]">
-              ${kpis ? kpis.totalCost.toLocaleString() : '---'}
+              ₹{kpis ? Number(kpis.totalCost).toLocaleString('en-IN') : '---'}
             </div>
             <p className="text-xs text-[#E1DCC9]/50 mt-1">Calculated at tiered factory tariffs</p>
           </div>
@@ -226,7 +226,7 @@ export const DashboardPage = () => {
                     fontSize: '12px',
                   }}
                   formatter={(value, name) => [
-                    name === 'totalKWh' ? `${value.toLocaleString()} kWh` : `$${value.toLocaleString()}`,
+                    name === 'totalKWh' ? `${value.toLocaleString()} kWh` : `₹${Number(value).toLocaleString('en-IN')}`,
                     name === 'totalKWh' ? 'Energy Used' : 'Cost'
                   ]}
                   labelFormatter={(label) => `Date: ${label}`}
@@ -335,7 +335,7 @@ export const DashboardPage = () => {
                     fontSize: '12px',
                   }}
                   formatter={(val, name, item) => [
-                    `${val.toLocaleString()} kWh ($${item.payload.totalCost})`,
+                    `${val.toLocaleString()} kWh (₹${Number(item.payload.totalCost).toLocaleString('en-IN')})`,
                     `${item.payload.name}`,
                   ]}
                 />
@@ -371,7 +371,7 @@ export const DashboardPage = () => {
                   <div className="text-[#E1DCC9]/70 mt-1 truncate">{log.machine?.name}</div>
                   <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-[#412D15]">
                     <span className="text-[#E1DCC9] font-bold">{log.energyConsumedKWh} kWh</span>
-                    <span className="text-[#E1DCC9]/90 font-medium">${log.calculatedCost}</span>
+                    <span className="text-[#E1DCC9]/90 font-medium">₹{Number(log.calculatedCost).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     <span className="text-[11px] text-[#E1DCC9]/50">{log.operatingHours}h run</span>
                   </div>
                 </div>

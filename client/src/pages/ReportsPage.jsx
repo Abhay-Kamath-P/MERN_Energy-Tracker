@@ -219,7 +219,7 @@ export const ReportsPage = () => {
           </div>
           <div>
             <span className="text-[#E1DCC9]/60">Page Cost:</span>{' '}
-            <span className="font-bold text-[#c89d53]">${totalFilteredCost.toFixed(2)}</span>
+            <span className="font-bold text-[#c89d53]">₹{Number(totalFilteredCost).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
         </div>
 
@@ -247,7 +247,7 @@ export const ReportsPage = () => {
                 <th className="py-3 px-4 text-right">Hours</th>
                 <th className="py-3 px-4 text-right">Power Factor</th>
                 <th className="py-3 px-4 text-right">Peak Load</th>
-                <th className="py-3 px-4 text-right">Cost</th>
+                <th className="py-3 px-4 text-right">Cost (₹)</th>
                 <th className="py-3 px-4">Notes</th>
                 {(user?.role === 'Admin' || user?.role === 'Manager') && (
                   <th className="py-3 px-4 text-center">Action</th>
@@ -281,7 +281,7 @@ export const ReportsPage = () => {
                     {log.peakDemandKW ? `${log.peakDemandKW.toFixed(1)} kW` : '---'}
                   </td>
                   <td className="py-3 px-4 text-right font-bold text-[#E1DCC9]">
-                    ${log.calculatedCost.toFixed(2)}
+                    ₹{Number(log.calculatedCost).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                   <td className="py-3 px-4 text-[#E1DCC9]/60 max-w-xs truncate" title={log.notes}>
                     {log.notes || '—'}

@@ -6,7 +6,7 @@ import {
   Zap, 
   Gauge, 
   Flame, 
-  DollarSign, 
+  IndianRupee, 
   CheckCircle2, 
   AlertCircle, 
   Trash2 
@@ -66,7 +66,7 @@ export const DataEntryPage = () => {
   }, []);
 
   // Live calculations
-  const tariff = selectedMachine?.tariffRatePerKWh || 0.15;
+  const tariff = selectedMachine?.tariffRatePerKWh || 8.50;
   const kwhNum = parseFloat(energyConsumedKWh) || 0;
   const hoursNum = parseFloat(operatingHours) || 0;
   const calculatedCost = (kwhNum * tariff).toFixed(2);
@@ -351,13 +351,13 @@ export const DataEntryPage = () => {
             {/* Estimated Cost Preview */}
             <div className="p-4 rounded-xl bg-[#000000] border border-[#412D15]">
               <span className="text-xs text-[#E1DCC9]/60 flex items-center gap-1.5">
-                <DollarSign className="h-3.5 w-3.5 text-[#E1DCC9]" /> Estimated Electricity Cost
+                <IndianRupee className="h-3.5 w-3.5 text-[#E1DCC9]" /> Estimated Electricity Cost
               </span>
               <div className="text-2xl font-bold text-[#E1DCC9] mt-1">
-                ${calculatedCost}
+                ₹{Number(calculatedCost).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
               <p className="text-[11px] text-[#E1DCC9]/50 mt-0.5">
-                Rate: ${tariff.toFixed(2)}/kWh &bull; {kwhNum} kWh
+                Rate: ₹{tariff.toFixed(2)}/kWh &bull; {kwhNum} kWh
               </p>
             </div>
 
@@ -454,7 +454,7 @@ export const DataEntryPage = () => {
                     {log.powerFactor ? log.powerFactor.toFixed(2) : '0.92'}
                   </td>
                   <td className="py-3 px-3 text-right font-bold text-[#E1DCC9]">
-                    ${log.calculatedCost.toFixed(2)}
+                    ₹{Number(log.calculatedCost).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                   <td className="py-3 px-3 text-[#E1DCC9]/70">{log.loggedBy?.name || 'Operator'}</td>
                   {(user?.role === 'Admin' || user?.role === 'Manager') && (

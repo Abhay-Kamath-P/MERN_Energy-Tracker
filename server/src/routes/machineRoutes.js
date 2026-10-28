@@ -100,7 +100,7 @@ router.post('/', protect, authorize('Admin', 'Manager'), async (req, res) => {
       voltageRating: Number(voltageRating) || 415,
       location: location || 'Shop Floor',
       status: status || 'Operational',
-      tariffRatePerKWh: Number(tariffRatePerKWh) || 0.15,
+      tariffRatePerKWh: Number(tariffRatePerKWh) || 8.50,
     });
 
     res.status(201).json({ success: true, data: machine });

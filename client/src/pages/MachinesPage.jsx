@@ -37,7 +37,7 @@ export const MachinesPage = () => {
   const [voltageRating, setVoltageRating] = useState('415');
   const [location, setLocation] = useState('Shop Floor 1');
   const [machStatus, setMachStatus] = useState('Operational');
-  const [tariffRatePerKWh, setTariffRatePerKWh] = useState('0.15');
+  const [tariffRatePerKWh, setTariffRatePerKWh] = useState('8.50');
 
   const fetchMachines = async () => {
     setLoading(true);
@@ -77,7 +77,7 @@ export const MachinesPage = () => {
     setVoltageRating('415');
     setLocation('Shop Floor 1');
     setMachStatus('Operational');
-    setTariffRatePerKWh('0.15');
+    setTariffRatePerKWh('8.50');
     setFormError('');
     setShowModal(true);
   };
@@ -279,7 +279,7 @@ export const MachinesPage = () => {
                 </div>
                 <div>
                   <span className="text-[#E1DCC9]/50 block">Tariff:</span>
-                  <span className="font-medium text-[#E1DCC9]/80">${m.tariffRatePerKWh}/kWh</span>
+                  <span className="font-medium text-[#E1DCC9]/80">₹{m.tariffRatePerKWh}/kWh</span>
                 </div>
               </div>
 
@@ -433,7 +433,7 @@ export const MachinesPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-[#E1DCC9]/70 font-semibold uppercase mb-1">Tariff ($/kWh)</label>
+                  <label className="block text-[#E1DCC9]/70 font-semibold uppercase mb-1">Tariff (₹/kWh)</label>
                   <input
                     type="number"
                     step="0.01"

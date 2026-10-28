@@ -165,7 +165,7 @@ export const AnalyticsPage = () => {
                 yAxisId="right"
                 type="monotone"
                 dataKey="totalCost"
-                name="Cost ($)"
+                name="Cost (₹)"
                 stroke="#c89d53"
                 strokeWidth={2}
                 dot={false}
@@ -202,7 +202,7 @@ export const AnalyticsPage = () => {
                     fontSize: '12px',
                   }}
                   formatter={(val, name) => [
-                    name === 'totalKWh' ? `${val.toLocaleString()} kWh` : `$${val.toLocaleString()}`,
+                    name === 'totalKWh' ? `${val.toLocaleString()} kWh` : `₹${Number(val).toLocaleString('en-IN')}`,
                     name === 'totalKWh' ? 'Energy' : 'Total Cost'
                   ]}
                 />
@@ -216,7 +216,7 @@ export const AnalyticsPage = () => {
               <div key={s.shift} className="p-2 rounded-lg bg-[#000000]/60 border border-[#412D15]">
                 <span className="text-[11px] text-[#E1DCC9]/60 block truncate">{s.shift.split(' ')[0]}</span>
                 <span className="text-xs font-bold text-[#E1DCC9] block mt-0.5">{s.totalKWh.toLocaleString()} kWh</span>
-                <span className="text-[10px] text-[#c89d53] font-semibold">${s.totalCost.toLocaleString()}</span>
+                <span className="text-[10px] text-[#c89d53] font-semibold">₹{Number(s.totalCost).toLocaleString('en-IN')}</span>
               </div>
             ))}
           </div>

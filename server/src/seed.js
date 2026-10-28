@@ -57,7 +57,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Bay 1 - Precision Milling',
         status: 'Operational',
-        tariffRatePerKWh: 0.16,
+        tariffRatePerKWh: 8.80,
       },
       {
         name: 'Haas VF-4 Machining Center',
@@ -68,7 +68,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Bay 2 - Precision Milling',
         status: 'Operational',
-        tariffRatePerKWh: 0.16,
+        tariffRatePerKWh: 8.80,
       },
       {
         name: 'Doosan Puma 2600 Lathe',
@@ -79,7 +79,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Bay 3 - Turning Center',
         status: 'Operational',
-        tariffRatePerKWh: 0.16,
+        tariffRatePerKWh: 8.80,
       },
       {
         name: 'AIDA 300-Ton Mechanical Press',
@@ -90,7 +90,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Heavy Press Hall',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
       {
         name: 'Komatsu Servo Press 150T',
@@ -101,7 +101,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Heavy Press Hall',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
       {
         name: 'Continuous Annealing Furnace',
@@ -112,7 +112,7 @@ export const seedData = async () => {
         voltageRating: 480,
         location: 'Heat Treatment Wing',
         status: 'Operational',
-        tariffRatePerKWh: 0.14,
+        tariffRatePerKWh: 8.20,
       },
       {
         name: 'Atlas Copco Rotary Screw Compressor 75HP',
@@ -123,7 +123,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Central Utility Room',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
       {
         name: 'Trane Industrial Chiller 120TR',
@@ -134,7 +134,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Rooftop Utility Deck',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
       {
         name: 'Automated Robotic Packaging Cell',
@@ -145,7 +145,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Packing Line 1',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
       {
         name: 'Fanuc Robotic Palletizer',
@@ -156,7 +156,7 @@ export const seedData = async () => {
         voltageRating: 415,
         location: 'Outbound Warehouse',
         status: 'Operational',
-        tariffRatePerKWh: 0.15,
+        tariffRatePerKWh: 8.50,
       },
     ]);
     console.log(`[Seeder] Seeded ${machines.length} industrial machines.`);
