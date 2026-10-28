@@ -1,15 +1,26 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Zap, Clock, Shield, LogOut, UserCheck } from 'lucide-react';
+import { Zap, Clock, LogOut, UserCheck } from 'lucide-react';
 
 export const Navbar = () => {
   const { user, logout, quickLogin } = useAuth();
+  const navigate = useNavigate();
 
   const getCurrentShift = () => {
     const hour = new Date().getHours();
     if (hour >= 6 && hour < 14) return 'Shift 1 (06:00 - 14:00)';
     if (hour >= 14 && hour < 22) return 'Shift 2 (14:00 - 22:00)';
     return 'Shift 3 (22:00 - 06:00)';
+  };
+
+  const handleRoleSwitch = async (role) => {
+    await quickLogin(role);
+    if (role === 'Operator') {
+      navigate('/entry');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -45,7 +56,8 @@ export const Navbar = () => {
             <UserCheck className="h-3 w-3 text-[#E1DCC9]/70" /> Role:
           </span>
           <button
-            onClick={() => quickLogin('Operator')}
+            onClick={() => handleRoleSwitch('Operator')}
+            title="Switch to Operator (Data Entry Scope)"
             className={`px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               user?.role === 'Operator'
                 ? 'bg-[#E1DCC9] text-[#1F150C] font-bold shadow'
@@ -55,7 +67,8 @@ export const Navbar = () => {
             Operator
           </button>
           <button
-            onClick={() => quickLogin('Manager')}
+            onClick={() => handleRoleSwitch('Manager')}
+            title="Switch to Manager (Analytics & Reports Scope)"
             className={`px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               user?.role === 'Manager'
                 ? 'bg-[#E1DCC9] text-[#1F150C] font-bold shadow'
@@ -65,7 +78,8 @@ export const Navbar = () => {
             Manager
           </button>
           <button
-            onClick={() => quickLogin('Admin')}
+            onClick={() => handleRoleSwitch('Admin')}
+            title="Switch to Admin (Full Fleet Control Scope)"
             className={`px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               user?.role === 'Admin'
                 ? 'bg-[#E1DCC9] text-[#1F150C] font-bold shadow'

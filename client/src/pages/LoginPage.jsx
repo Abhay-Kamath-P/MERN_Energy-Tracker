@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Zap, AlertCircle, ArrowRight, UserCheck } from 'lucide-react';
 
 export const LoginPage = () => {
   const { login, quickLogin } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,7 +16,12 @@ export const LoginPage = () => {
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
+      const loggedUser = await login(email, password);
+      if (loggedUser?.role === 'Operator') {
+        navigate('/entry');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please check credentials.');
     } finally {
@@ -26,7 +33,12 @@ export const LoginPage = () => {
     setError('');
     setLoading(true);
     try {
-      await quickLogin(role);
+      const loggedUser = await quickLogin(role);
+      if (loggedUser?.role === 'Operator' || role === 'Operator') {
+        navigate('/entry');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.response?.data?.message || `Failed to log in as ${role}`);
     } finally {
@@ -97,7 +109,7 @@ export const LoginPage = () => {
           </button>
         </form>
 
-        {/* Quick Demo Logins */}
+        {/* Quick Demo Logins with clear role expectations */}
         <div className="mt-8 pt-6 border-t border-[#412D15]">
           <div className="text-center mb-3">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-[#E1DCC9]/60 flex items-center justify-center gap-1.5">
@@ -111,7 +123,7 @@ export const LoginPage = () => {
               className="p-2.5 rounded-lg bg-[#000000]/80 hover:bg-[#412D15] border border-[#412D15] transition-all text-center group cursor-pointer"
             >
               <div className="text-xs font-bold text-[#E1DCC9]">Operator</div>
-              <div className="text-[10px] text-[#E1DCC9]/50">Data Entry</div>
+              <div className="text-[10px] text-[#E1DCC9]/60">Data Entry</div>
             </button>
 
             <button
@@ -119,7 +131,7 @@ export const LoginPage = () => {
               className="p-2.5 rounded-lg bg-[#000000]/80 hover:bg-[#412D15] border border-[#412D15] transition-all text-center group cursor-pointer"
             >
               <div className="text-xs font-bold text-[#E1DCC9]">Manager</div>
-              <div className="text-[10px] text-[#E1DCC9]/50">Analytics</div>
+              <div className="text-[10px] text-[#E1DCC9]/60">Analytics</div>
             </button>
 
             <button
@@ -127,7 +139,7 @@ export const LoginPage = () => {
               className="p-2.5 rounded-lg bg-[#000000]/80 hover:bg-[#412D15] border border-[#412D15] transition-all text-center group cursor-pointer"
             >
               <div className="text-xs font-bold text-[#E1DCC9]">Admin</div>
-              <div className="text-[10px] text-[#E1DCC9]/50">Full Fleet</div>
+              <div className="text-[10px] text-[#E1DCC9]/60">Full Fleet</div>
             </button>
           </div>
         </div>
